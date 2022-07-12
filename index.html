@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<body>
+    <script>
+      setTimeout(function(){ 
+        (function(n, j, c, h, a, t) {
+      d= j.createElement('div');
+      d.id= 'chatbot';
+      t = j.getElementsByTagName('head')[0];
+      a = j.createElement('script');
+      a.async = 1;
+      a.id= 'ninjachat';
+      a.src = c + h;
+      a.onload = function(){
+          n._NC.init('2512057023081198','574','ap1')
+    };
+    j.lastChild.append(d);
+    t.appendChild(a);
+    })(window, document, 'https://widgets.500apps.com/ninjachat/', 'ninjachat.js');
+    },2000);
+    </script>
+    <main>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+            <div></div>
+        </section>
+    </main>
+    <style>
+        main {
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+        }
+
+
+        section {
+            position: absolute;
+            --n: 0;
+            top: calc((var(--n) - 4.5) * 60px);
+            perspective: 600px;
+            perspective-origin: 0 0;
+        }
+
+
+        section>div {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            left: -20px;
+            top: -20px;
+            position: absolute;
+            animation: spin 2s linear infinite;
+        }
+
+
+        section>div:nth-of-type(1) {
+            animation-delay: calc(var(--n) * -0.2s);
+            background-color: hsla(calc(222 - var(--n) * 8), 64%, 45%, 1);
+        }
+
+
+        section>div:nth-of-type(2) {
+            animation-delay: calc(var(--n) * -0.2s - 1s);
+            background-color: hsla(calc(10 + var(--n) * 5), 90%, 45%, 1);
+        }
+
+
+        section:nth-of-type(1) {
+            --n: 0;
+        }
+
+
+        section:nth-of-type(2) {
+            --n: 1;
+        }
+
+
+        section:nth-of-type(3) {
+            --n: 2;
+        }
+
+
+        section:nth-of-type(4) {
+            --n: 3;
+        }
+
+
+        section:nth-of-type(5) {
+            --n: 4;
+        }
+
+
+        section:nth-of-type(6) {
+            --n: 5;
+        }
+
+
+        section:nth-of-type(7) {
+            --n: 6;
+        }
+
+
+        section:nth-of-type(8) {
+            --n: 7;
+        }
+
+
+        section:nth-of-type(9) {
+            --n: 8;
+        }
+
+
+        section:nth-of-type(10) {
+            --n: 9;
+        }
+
+
+        @keyframes spin {
+            0% {
+                transform: rotateY(0) translate3d(100px, 0, 0) rotateY(0);
+                z-index: 0;
+            }
+
+
+            25% {
+                z-index: 20;
+            }
+
+
+            75% {
+                z-index: -20;
+            }
+
+
+            100% {
+                transform: rotateY(-360deg) translate3d(100px, 0, 0) rotateY(360deg);
+                z-index: 0;
+            }
+        }
+    </style>
+
+
+
+</body>
+
+
+
+</html>
