@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
+import ThreeHero from '../components/ThreeHero.jsx'
 
 // Features for HiredPath (each with bullet points)
 const features = [
@@ -171,6 +172,8 @@ function Hero() {
           }} />
         ))}
       </div>
+
+      <ThreeHero />
 
       <div className="hero-stack">
         <h1 className="title center">Land Your Next PM Role Faster</h1>

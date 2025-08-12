@@ -348,6 +348,16 @@ body {
 .feature { background: var(--surface); border: 1px solid #1b2026; }
 .feature.left .feature-inner, .feature.right .feature-inner { display: grid; grid-template-columns: 1fr; gap: 18px; width: min(1100px, 92%); margin: 0 auto; align-items: center; }
 @media (min-width: 900px) { .feature.left .feature-inner, .feature.right .feature-inner { grid-template-columns: 1fr 1fr; } }
+/* Three.js hero canvas container */
+.hero-canvas {
+  position: absolute;
+  inset: 0 0 auto 0;
+  top: 0;
+  height: 520px;
+  pointer-events: none;
+}
+@media (max-width: 720px){ .hero-canvas{ height: 420px; } }
+
 .feature.left .copy { grid-column: 1; text-align: left; }
 .feature.right .copy { grid-column: 2; text-align: right; }
 .feature h3 { color: var(--text); }
