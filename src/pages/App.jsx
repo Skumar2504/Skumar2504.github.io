@@ -42,6 +42,7 @@ function useLenis() {
       const handler = (e) => {
         const target = link.getAttribute('href')
         if (target && target !== '#') {
+     
           e.preventDefault()
           lenis.scrollTo(target)
         }
