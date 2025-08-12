@@ -1,25 +1,35 @@
-import React, { useEffect, useRef } from 'react'
-import Lenis from '@studio-freight/lenis'
+import React, { useEffect } from 'react';
+import Lenis from '@studio-freight/lenis';
 
+// Features for HiredPath
 const features = [
   {
-    title: 'Role Matching Intelligence',
-    desc: 'AI curates high-signal PM roles across the market based on your background and preferences.'
+    title: 'AI Job Matching',
+    desc: 'Discover high-signal product management roles tailored to your background and aspirations using our AI-driven matching engine.',
   },
   {
-    title: 'Tailored Pitch & Resume Insights',
-    desc: 'Get targeted suggestions to refine your resume and outreach for each role.'
+    title: 'Keyword Intelligence',
+    desc: 'Get personalized resume and pitch insights based on job description keywords to improve your search ranking and relevance.',
   },
   {
-    title: 'Smart Tracking Dashboard',
-    desc: 'Organize applications, follow-ups, and interview prep with reminders.'
+    title: 'Rapid Applications',
+    desc: 'Automate job applications with targeted scripts and pre-filled forms, so you can apply to more roles in less time.',
   },
   {
-    title: 'Company Signals & Insights',
-    desc: 'See team structure, product maturity, and recent signals to prioritize where to apply.'
-  }
-]
+    title: 'Smart Tracking & Insights',
+    desc: 'Organize applications, schedule follow-ups, and gain data-driven insights into company signals and interview prep.',
+  },
+  {
+    title: 'Emotional & Community Support',
+    desc: 'Stay motivated through built-in journaling and a supportive community of job seekers and mentors.',
+  },
+  {
+    title: 'Network Activation Tools',
+    desc: 'Leverage your professional network with personalized outreach templates and warm introduction suggestions.',
+  },
+];
 
+// Hook to initialize Lenis smooth scrolling
 function useLenis() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -27,174 +37,96 @@ function useLenis() {
       lerp: 0.12,
       wheelMultiplier: 1,
       smoothTouch: false,
-    })
+    });
 
-    // Smooth RAF loop
     function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf)
 
-    // Smooth anchor links
-    const links = Array.from(document.querySelectorAll('a[href^="#"]'))
-    const clickHandlers = links.map(link => {
-      const handler = (e) => {
-        const target = link.getAttribute('href')
-        if (target && target !== '#') {
-     
-          e.preventDefault()
-          lenis.scrollTo(target)
-        }
-      }
-      link.addEventListener('click', handler)
-      return { link, handler }
-    })
-
-    return () => {
-      clickHandlers.forEach(({ link, handler }) => link.removeEventListener('click', handler))
-      lenis.destroy()
-    }
-  }, [])
+    requestAnimationFrame(raf);
+  }, []);
 }
 
-function Parallax({ speed = 0.2, children, className = '' }) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const onScroll = () => {
-      const rect = el.getBoundingClientRect()
-      const offset = rect.top + rect.height / 2 - window.innerHeight / 2
-      const translate = -offset * speed
-      el.style.transform = `translate3d(0, ${translate.toFixed(2)}px, 0)`
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [speed])
-  return (
-    <div ref={ref} className={className} style={{ willChange: 'transform' }}>
-      {children}
-    </div>
-  )
-}
-
-export default function App() {
-  useLenis()
-
-  return (
-    <div>
-      <div id="top" />
-      <Header />
-      <Hero />
-      <Features />
-      <ParallaxBand />
-      <About />
-      <CTA />
-      <Footer />
-    </div>
-  )
-}
-
-function Header() {
-  return (
-    <header className="container header">
-      <div className="brand">
-        <span className="logo">H</span>
-        <span className="name">Hiredpath</span>
-      </div>
-      <nav>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#cta" className="btn btn-primary">Join Waitlist</a>
-      </nav>
-    </header>
-  )
-}
-
+// Hero section for top of page
 function Hero() {
   return (
     <section className="hero">
-      <div className="container hero-inner">
-        <Parallax speed={0.12} className="hero-badge">AI Copilot for PM Job Search</Parallax>
-        <h1>
-          Find your next PM role faster
-        </h1>
-        <p className="sub">
-          Hiredpath uses AI to match you with high-signal roles, tailor your pitch, and track progress.
-        </p>
-        <div className="hero-cta">
-          <a href="#cta" className="btn btn-primary">Get Early Access</a>
-          <a href="#features" className="btn btn-ghost">See Features</a>
-        </div>
-      </div>
-      <Parallax speed={0.06} className="shape s1" />
-      <Parallax speed={0.1} className="shape s2" />
-      <Parallax speed={0.2} className="shape s3" />
+      <h1>Find Your Path to the Perfect PM Role</h1>
+      <p>HiredPath helps busy professionals navigate the job market with AI-driven role matching, keyword insights, and supportive community.</p>
+      <a href="#waitlist" className="btn primary">Join the Waitlist</a>
     </section>
-  )
+  );
 }
 
+// Problem section with statistics highlighting pain points
+function Problem() {
+  return (
+    <section className="problem">
+      <h2>Job searching shouldn’t feel like a second job</h2>
+      <ul>
+        <li><strong>94.7%</strong> find the process inefficient and overwhelming.</li>
+        <li>Only <strong>26.5%</strong> receive replies to applications.</li>
+        <li><strong>73.7%</strong> lose track of applications and follow-ups.</li>
+        <li><strong>90.8%</strong> want better keyword insights to tailor their resumes.</li>
+        <li><strong>78.3%</strong> have networks they rarely utilize.</li>
+      </ul>
+    </section>
+  );
+}
+
+// Single feature call‑out section
+function FeatureSection({ feature }) {
+  return (
+    <section className="feature">
+      <div className="feature-content">
+        <h3>{feature.title}</h3>
+        <p>{feature.desc}</p>
+      </div>
+    </section>
+  );
+}
+
+// Features list wrapper
 function Features() {
   return (
-    <section id="features" className="section container">
-      <h2 className="section-title">Features</h2>
-      <div className="grid">
-        {features.map((f) => (
-          <div key={f.title} className="card">
-            <h3>{f.title}</h3>
-            <p>{f.desc}</p>
-          </div>
-        ))}
-      </div>
+    <section className="features">
+      {features.map((feat) => (
+        <FeatureSection key={feat.title} feature={feat} />
+      ))}
     </section>
-  )
+  );
 }
 
-function ParallaxBand() {
-  return (
-    <section className="parallax-band">
-      <div className="container band-inner">
-        <Parallax speed={0.15}>
-          <h3>Let AI surface the right opportunities — you focus on landing them.</h3>
-        </Parallax>
-      </div>
-    </section>
-  )
-}
-
-function About() {
-  return (
-    <section id="about" className="section container">
-      <h2 className="section-title">About Us</h2>
-      <p>
-        We’re building Hiredpath to simplify the PM job search with AI. Our mission is to give every product
-        manager the clarity and leverage to find roles where they can thrive.
-      </p>
-    </section>
-  )
-}
-
+// Call‑to‑action section
 function CTA() {
   return (
-    <section id="cta" className="section container cta">
-      <h2 className="section-title">Join the waitlist</h2>
-      <p>Be the first to try Hiredpath when we launch.</p>
-      <a href="mailto:hello@hiredpath.ai?subject=Waitlist" className="btn btn-primary">Request Access</a>
+    <section className="cta" id="waitlist">
+      <h2>Ready to transform your job search?</h2>
+      {/* Replace the href with your actual waitlist or signup link */}
+      <a href="https://forms.gle/" className="btn primary">Join the Waitlist</a>
     </section>
-  )
+  );
 }
 
+// Footer component
 function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer-inner">
-        <span>© {new Date().getFullYear()} Hiredpath</span>
-        <a href="#top" className="top">Back to top ↑</a>
-      </div>
+      <p>&copy; {new Date().getFullYear()} HiredPath. All rights reserved.</p>
     </footer>
-  )
+  );
 }
 
+export default function App() {
+  useLenis();
+  return (
+    <div className="app">
+      <Hero />
+      <Problem />
+      <Features />
+      <CTA />
+      <Footer />
+    </div>
+  );
+}
