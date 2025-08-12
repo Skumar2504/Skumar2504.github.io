@@ -76,6 +76,18 @@ function Hero() {
     <section className="hero reveal" ref={ref}>
       <div className="hero-layer l1" aria-hidden />
       <div className="hero-layer l2" aria-hidden />
+      <div className="particles" aria-hidden>
+        {Array.from({ length: 16 }).map((_, i) => (
+          <span className="p" key={i} style={{
+            '--dx': `${(i % 4) * 12 - 18}px`,
+            '--delay': `${(i * 97) % 3000}ms`,
+            '--dur': `${4000 + (i % 5) * 1000}ms`,
+            '--size': `${6 + (i % 3) * 3}px`,
+            left: `${6 + (i * 6) % 88}%`,
+            top: `${10 + (i * 13) % 60}%`,
+          }} />
+        ))}
+      </div>
       <h1 className="reveal">Find Your Path to the Perfect PM Role</h1>
       <p className="reveal">HiredPath helps busy professionals navigate the job market with AI-driven role matching, keyword insights, and supportive community.</p>
       <a href="#waitlist" className="btn primary reveal">Join the Waitlist</a>

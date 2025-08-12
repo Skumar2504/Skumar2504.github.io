@@ -105,6 +105,24 @@ body {
 /* hero cta alignment */
 .hero .btn{display:block;width:max-content;margin:24px auto 0}
 
+
+/* Hero particles (CSS only) */
+.particles { position: absolute; inset: 0; pointer-events: none; }
+.particles .p {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #12c2b3, #8be8df);
+  filter: blur(0.5px);
+  animation: float var(--dur) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: .35; }
+  50% { transform: translate3d(var(--dx), -12px, 0); opacity: .65; }
+}
+
   animation: slideInUp 0.8s ease forwards;
 }
 /* Shapes for subtle parallax */
